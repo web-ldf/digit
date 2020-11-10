@@ -1,0 +1,24 @@
+.top_login{
+    width: 100%;
+    background-color: #aaaaaa;
+    height: 31px;
+}
+.top_login div a{
+   margin-right: 1.25em;
+}
+ /* 超小屏时 */
+ @media (max-width:575px) {
+    /* 头部部分 */
+    .welcome{
+        text-align: center;
+    }
+    #Stroage{
+        width: 100%;
+        justify-content: center !important;
+    }
+    .top_login{
+        width: 100%;
+        background-color: #aaaaaa;
+        height: 60px;
+    }
+}

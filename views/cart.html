@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="../public/stylesheets/common.css"/>
+    <link rel="stylesheet" href="../public//stylesheets/reset.css">
+    <script src="../public/javascripts/jquery.min.js"></script>
+    <script src="../public/javascripts/popper.min.js"></script>
+    <script src="../public/javascripts/bootstrap.min.js"></script>
+    <script src="../public/javascripts/jquery.js"></script>
+    <script src="../public/javascripts/header.js"></script>
+    <style>
+        .userMessageContent{
+            height: 500px;
+        }
+        .shop_top{
+          background-color: #e6e6e6;
+        }
+        .shop_color{
+          color: #808080;
+        }
+        .text-align-center{
+           line-height: 88.08px;
+        }
+    </style>
+</head>
+<body class="cart_bg">
+    <header id="header"></header>
+    <div class="container mt-3">
+        <div class="row no-gutters">
+            <div class="col-sm-6 text-center">
+                <h3 class="h3">用户中心</h3>
+            </div>
+                <ul class="col-sm-6 d-flex justify-content-around align-items-center nav nav-tabs ">
+                    <li  class="active"><a href="#userMessage"  data-toggle="tab">修改密码</a></li>
+                    <li ><a href="#address" onclick="basicMessage()" data-toggle="tab">基本信息</a></li>
+                    <li ><a href="#buys" onclick="myShop()" data-toggle="tab">我的购物车</a></li>
+                </ul>
+        </div>
+     </div>
+    <div class="container  mt-3">
+        <!-- 下边内容部分-->
+        <div class="tab-content">
+            <!-- 修改密码部分-->
+            <div  class="tab-pane active flex-row no-gutters" id="userMessage">
+                <div class="col-sm-12 bg-white pl-2 userMessageContent">
+                  <div class="border-bottom py-2">
+                     <h5 class="h5 pl-1">修改密码</h5>
+                  </div>
+                   <div class="mt-5 ml-5">
+                    <form>
+                        <div class="form-group row no-gutters">
+                          <label for="username" class="col-sm-1 col-form-label">用户名</label>
+                          <div class="col-sm-6">
+                            <input type="text" readonly class="form-control-plaintext" id="username">
+                          </div>
+                        </div>
+                        <div class="form-group row no-gutters">
+                          <label for="newPassword" class="col-sm-1 col-form-label">新密码</label>
+                          <div class="col-sm-6">
+                            <input type="password" class="form-control" id="newPassword">
+                          </div>
+                        </div>
+                        <div class="form-group row no-gutters">
+                            <label for="checkPassword" class="col-sm-1 col-form-label">确认密码</label>
+                            <div class="col-sm-6">
+                              <input type="password" class="form-control" id="checkPassword">
+                            </div>
+                        </div>
+                        <div class="ml-5 py-4">
+                            <button type="submit" class="btn btn-primary ">确认修改</button>
+                        </div>
+                      </form>
+                   </div>
+                </div>
+            </div>
+            <!-- 用户基本信息 -->
+            <div  class="tab-pane" id="address">
+                <div class="col-sm-12 bg-white pl-2 userMessageContent">
+                    <div class="border-bottom py-2">
+                       <h5 class="h5 pl-1">我的信息</h5>
+                    </div>
+                     <div class="mt-5 ml-5">
+                      <form>
+                          <div class="form-group row no-gutters">
+                            <label for="nickname" class="col-sm-1 col-form-label">用户名</label>
+                            <div class="col-sm-6">
+                              <input type="text" class="form-control" readonly id="nickname">
+                            </div>
+                          </div>
+                          <div class="form-group row no-gutters">
+                            <label  class="col-sm-1 col-form-label">性别</label>
+                            <div class="col-sm-6 mt-2">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="man" value="1">
+                                    <label class="form-check-label" for="man">男</label>
+                                  </div>
+                                  <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="sex" id="woman" value="0">
+                                    <label class="form-check-label" for="woman">女</label>
+                                  </div>
+                            </div>
+                          </div>
+                          <div class="form-group row no-gutters">
+                              <label for="checkPassword" class="col-sm-1 col-form-label">电话号码</label>
+                              <div class="col-sm-6">
+                                <input type="number" class="form-control" id="phone">
+                              </div>
+                          </div>
+                          <div class="form-group row no-gutters">
+                            <label for="checkPassword" class="col-sm-1 col-form-label">电子邮件</label>
+                            <div class="col-sm-6">
+                              <input type="email" class="form-control" id="email">
+                            </div>
+                        </div>
+                          <div class="ml-5 py-4">
+                              <button type="submit" class="btn btn-primary ">保存更改</button>
+                          </div>
+                     </form>
+                    </div>
+                </div>
+            </div>
+            <!-- 购物车部分 -->
+            <div  class="tab-pane" id="buys">
+              <div class="col-sm-12 bg-white pl-2 userMessageContent">
+                <div class="border-bottom py-2">
+                  <h5 class="h5 pl-1">我的购物车</h5>
+                </div>
+                <div class="col-sm-12 shop_top shop_color py-2 row no-gutters">
+                 <div class="col-sm-1 text-center">
+                    <input type="checkbox">
+                    <span class="">全选</span> 
+                 </div>
+                 <div class="col-sm-4 text-center">
+                  <span>商品</span> 
+                 </div>
+                 <div class="col-sm-1 text-center">
+                  <span>单价</span> 
+                 </div>
+                 <div class="col-sm-2 text-center">
+                  <span>数量</span> 
+                 </div>
+                 <div class="col-sm-2 text-center">
+                  <span>金额</span> 
+                 </div>
+                 <div class="col-sm-2 text-center">
+                  <span>操作</span> 
+                 </div>
+                </div>
+                <!-- 商品内容部分 -->
+                <div class="col-sm-12 shop_top shop_color py-2 row no-gutters mt-2" id="myShopContent">
+                  <!-- <div class="col-sm-1 text-center text-align-center">
+                         <input  type="checkbox">
+                     </div>
+                  <div class="col-sm-4 row no-gutters">
+                    <div class="col-sm-4 no-gutters">
+                      <img src="../public/images/index_newProducts/oppoA33.jpg" class="w-75" alt="">
+                    </div>
+                    <div class="col-sm-8 shop_color mt-3">
+                      <p>华为 nova 青春版 4GB+64GB</p>
+                      <p class="mt-3"><span>规格：</span><span>默认</span></p>
+                    </div>
+                  </div>
+                  <div class="col-sm-1 text-center text-align-center">
+                   <span>4999.00</span> 
+                  </div>
+                  <div class="col-sm-2 text-center text-align-center">
+                     <button>-</button>
+                     <input type="text" value="2" class="w-25 text-center">
+                     <button>+</button>
+                  </div>
+                  <div class="col-sm-2 text-center text-align-center">
+                   <span>9998.00</span> 
+                  </div>
+                  <div class="col-sm-2 text-center text-align-center">
+                   <a href="#" class="shop_color">删除</a>
+                  </div> -->
+                 </div>
+              </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        //获取用户名放在输入框中
+        let username=localStorage.getItem('uname');
+        document.getElementById('username').value=`${username}`;
+        //基本信息获取
+        function basicMessage(){
+            $.ajax({
+               url:'http://localhost:5050/users/loginMessage',
+               type:'get',
+               data:{uname:localStorage.uname},
+               success:function(results){
+                  var [userMessage]=results;
+                  console.log(userMessage);
+                  //用户名
+                  document.getElementById('nickname').value=localStorage.getItem('uname');
+                  //性别
+                  if(userMessage.sex==1){
+                    document.getElementById('man').checked=true;
+                  }else{
+                    document.getElementById('woman').checked=true;
+                  }
+                  //显示电话号码
+                  document.getElementById('phone').value=userMessage.phone;
+                  //显示电子邮件
+                  document.getElementById('email').value=userMessage.email;
+               }
+            })
+        }
+        //用户的购物车模块获取数据
+        function myShop() {
+           $.ajax({
+             url:'http://localhost:5050/details/searchShop',
+             type:"get",
+             data:{uid:localStorage.getItem('uid')},
+             //这里是用户ID，暂时没做
+             dataType:"json",
+             success:function(results){
+               //查询返回的是数组
+               //定义存放数据的变量
+               var HTML=``;
+               console.log(results);
+               //遍历购物车的数据
+               for(p of results){
+                 HTML+=`
+                 <div class="col-sm-1 text-center text-align-center">
+                     <input type="checkbox">
+                  </div>
+                  <div class="col-sm-4 row no-gutters">
+                    <div class="col-sm-4 no-gutters">
+                      <img src="../${p.img}" class="w-75" alt="">
+                    </div>
+                    <div class="col-sm-8 shop_color mt-3">
+                      <p>${p.title}</p>
+                      <p class="mt-3"><span>规格：</span><span>${p.spec}</span></p>
+                    </div>
+                  </div>
+                  <div class="col-sm-1 text-center text-align-center">
+                   <span>${p.price.toFixed(2)}</span> 
+                  </div>
+                  <div class="col-sm-2 text-center text-align-center">
+                      <span>${p.num}</span>
+                  </div>
+                  <div class="col-sm-2 text-center text-align-center">
+                   <span>${p.total}</span> 
+                  </div>
+                  <div class="col-sm-2 text-center text-align-center">
+                   <a href="#" class="shop_color">删除</a>
+                  </div>
+                 `
+               }
+               $('#myShopContent').html(HTML);
+             }
+           });
+        }
+    </script>
+</body>
+</html>

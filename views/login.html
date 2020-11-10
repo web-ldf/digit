@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+    <script src="../public/javascripts/jquery.min.js"></script>
+    <script src="../public/javascripts/popper.min.js"></script>
+    <script src="../public/javascripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/common.css"/>
+    <script src="../public/javascripts/jquery.js"></script>
+    <style>
+        .login_bg{
+            /*background-image: url(../public/images/login_bg.jpg);*/
+            background-color: rgba(255,0,0,0.1);
+            height: 36rem;
+        }
+        .btn-login{
+            color: #fff;
+            background-color: #ff94c2;
+            border-color: #ff94c2;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- login头部-->
+    <div class="row no-gutters">
+        <div class="col-6">
+            <h3 class="d-flex justify-content-center">会员登录</h3>
+        </div>
+        <div class="col-6 d-flex align-items-center justify-content-end">
+            <span class="text-small">没有会员账号？</span>
+            <a href="register.html" class="text-small text-white btn btn-secondary mr-5">注册</a>
+        </div>
+    </div>
+</div>
+<div class="login_bg d-flex align-items-center justify-content-center">
+    <div class="container d-flex justify-content-center mw-75">
+        <div class="card bg-transparent w-75 ">
+            <div class="card-body">
+                <h5 class="card-title text-center">登录</h5>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item  bg-transparent"><label class="" for="uname">用户名：</label><input id="uname" type="text" class="form-control w-100  bg-transparent" placeholder="用户名长度为6~10"/></li>
+                <li class="list-group-item  bg-transparent"><label for="pwd">密码：</label><input type="text" id="pwd" class="form-control w-100 float-right  bg-transparent" placeholder="请输入密码"/></li>
+            </ul>
+            <div class="row no-gutters">
+                <div class="col-6"><a href="" class="ml-4 text-muted text-small">忘记密码</a></div>
+                <div class="col-6"><a href="register.html" class="float-right mr-4 text-muted text-small">免费注册></a></div>
+            </div>
+            <div class="card-body text-center pt-0 pb-2">
+                <button class="btn btn-login px-5">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //查找元素登录,发送请求
+    $("div.card-body>button").click(function(){
+        //获取用户名和密码的值
+        let uname=$("#uname").val();
+        let upwd=$("#pwd").val();
+        // 发送ajax请求，
+        $.ajax({
+            url:"http://localhost:5050/users/login",
+            type:"post",
+            data:{uname:uname,upwd:upwd},
+            datatype:"json",
+            success:function(result){
+                //console.log(result[0].uid);
+                if(result.length!=0){
+                    alert("登录成功，即将跳转首页");
+                    //设置永久存储
+                    localStorage.setItem('uname',uname);
+                    //设置用户ID存储，用于购物车插入数据
+                    localStorage.setItem('uid',result[0].uid);
+                    location.href='index.html';
+                }else{
+                    alert("账号或密码有误");
+                }
+            },
+        });
+    })
+</script>
+</body>
+</html>

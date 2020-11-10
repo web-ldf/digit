@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="../public/stylesheets/common.css"/>
+    <link rel="stylesheet" href="../public/stylesheets/reset.css">
+    <script src="../public/javascripts/jquery.min.js"></script>
+    <script src="../public/javascripts/popper.min.js"></script>
+    <script src="../public/javascripts/bootstrap.min.js"></script>
+    <script src="../public/javascripts/jquery.js"></script>
+    <script src="../public/javascripts/header.js"></script>
+    <style>
+        .details_sm img {
+            width: 60px;
+            margin-right: 0.5rem;
+            cursor: pointer;
+        }
+        .add_num input{
+            outline-color: #00B7FF;
+        }
+        .add_num button{
+            border: 1px solid #00B7FF;
+            outline: none;
+        }
+        .price>div:first-child{
+            color: black;
+        }
+        .price>div:last-child{
+            color: #cc0c0f;
+            font-size: 1.6rem;
+            font-weight: bold;
+        }
+       .details_intro{
+           background-color: #f5f5f5;
+           padding: 0.5rem;
+       }
+        .details_sm>li:hover{
+            border: 2px solid #ff94c2;
+        }
+        .active_img{
+            border: 2px solid #ff94c2;
+        }
+        .details_sm{
+            overflow: hidden;
+        }
+        .pic_sm{
+            width: 460px;
+            margin:0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header id="header"></header>
+    <div class="container mt-3">
+        <!-- 上边的商品详情部分-->
+      <div class="row mx-0">
+        <!--左边大图片部分-->
+          <div class="col-lg-6 col-sm-12 pic_md">
+            <img src="../public/images/oppoA37.jpg" class="w-100" alt=""/>
+              <div class="d-flex align-items-center pic_sm d-inline-block">
+                  <!-- 左边的箭头按钮-->
+                  <img src="../public/images/gray_left.png" class="btn btn-light py-4 disabled" alt=""/>
+                  <ul class="list-unstyled d-flex justify-content-start mx-1 details_sm">
+                      <!-- <li class="active_img"><img src="../public/images/oppoA37-sm.jpg" alt=""/></li>
+                      <li><img src="../public/images/oppoA37-sm2.jpg" alt=""/></li>
+                      <li><img src="../public/images/oppoA37-sm3.jpg" alt=""/></li>
+                      <li><img src="../public/images/oppoA37-sm4.jpg" alt=""/></li>
+                      <li><img src="../public/images/oppoA37-sm5.jpg" alt=""/></li> -->
+                  </ul>
+                  <img src="../public/images/gray_right.png" class="btn btn-light py-4" alt=""/>
+              </div>
+         </div>
+          <!-- 右边商品文字详情介绍部分-->
+          <div class="col-lg-6 col-sm-12 justify-content-center detail">
+              <h5 class="pt-4 mb-3">OPPO A37 2GB+16GB内存版</h5>
+              <!-- 库存 -->
+              <div class="py-3">
+                  <span>库存：</span>
+                  <span>99</span>
+              </div>
+              <!-- 规格部分 -->
+              <div class="d-flex">
+                  <div class="float-left small">规格：</div>
+                    <div class="d-flex flex-wrap w-50">
+                        <!-- <a class="btn  btn-outline-secondary active ml-lg-2 mt-lg-1 ml-sm-2" href="product_details.html?pid=1">双核i5/8GB内存/128GB闪存</a>
+                        <a class="btn  btn-outline-secondary ml-lg-2 mt-lg-1 ml-sm-2" href="product_details.html?lid=1">双核i5/8GB内存/128GB闪存</a>
+                        <a class="btn  btn-outline-secondary ml-lg-2 mt-lg-1 ml-sm-2" href="product_details.html?lid=1">双核i5/8GB内存/128GB闪存</a>
+                        <a class="btn  btn-outline-secondary ml-lg-2 mt-lg-1 ml-sm-2" href="product_details.html?lid=1">双核i5/8GB内存/128GB闪存</a> -->
+                    </div>
+                  <div class="clearfix"></div>
+              </div>
+              <!-- 添加数量按钮部分-->
+              <div class="d-flex justify-content-start mt-2 align-content-center">
+                  <div>数量：</div>
+                  <div class="ml-2 add_num">
+                      <button class="px-2 decrementNumber">-</button>
+                      <span><input type="text" class="w-25 text-center nums" value="1"/></span>
+                      <button class="px-2 incrementNumber">+</button>
+                  </div>
+              </div>
+              <!-- 价格部分的设置-->
+              <div class="d-flex justify-content-start align-items-center mt-3 price">
+                  <div>价格：</div>
+                  <div class="ml-2">￥999.00</div>
+              </div>
+              <!-- 立即购买部分-->
+              <div class="d-flex mt-3">
+                  <!-- <button class="btn btn-primary ml-3 w-25">立即购买</button> -->
+                  <button class="btn btn-dark ml-3 w-25" id="addShopping">加入购物车</button>
+              </div>
+          </div>
+      </div>
+       <!-- 商品介绍-->
+       <div class="d-flex details_intro align-content-center">
+          <h4> 商品介绍</h4>
+       </div>
+    <div class="row intro">
+       <!-- <div class="col-lg-4 mt-3">系统：安卓（andriod）</div>
+        <div class="col-lg-4 mt-3">后置摄像头像素：1200万-1999万</div>
+        <div class="col-lg-4 mt-3">电池容量：4000mAh-5999mAh</div>
+        <div class="col-lg-4 mt-3">运行内存：6G</div>
+        <div class="col-lg-4 mt-3">机身内存：64GB</div>
+        <div class="col-lg-4 mt-3">型号：R9s Plus</div>
+        <div class="col-lg-4 mt-3">品牌：OPPO</div> -->
+    </div>
+    <!-- 商品介绍图片部分-->
+        <div class="details_img">
+            <!-- <div>
+                <img src="../public/images/wKgBTFsiXH6AZ6ExAAJiId7U_8o361.jpg" class="w-100" alt=""/>
+            </div>
+            <div>
+                <img src="../public/images/wKgBS1siXCyAdo8RAAEOaRN3SGg263.jpg" class="w-100" alt=""/>
+            </div>
+            <div>
+                <img src="../public/images/wKgBTFsiXH6AfIhCAAFzCrv2WCE730.jpg" class="w-100" alt=""/>
+            </div>
+            <div>
+                <img src="../public/images/wKgBS1siXC2AIaRgAAJN9jMIg08685.jpg" class="w-100" alt=""/>
+            </div>
+            <div>
+                <img src="../public/images/wKgBTFsiXH-AAHX5AAJllNc32pA756.jpg" class="w-100" alt=""/>
+            </div>
+            <div>
+                <img src="../public/images/wKgBTFsiXH-AD_s9AADRCjSddx0872.jpg" class="w-100" alt=""/>
+            </div> -->
+        </div>
+    </div>
+    <script>
+        $(function(){
+            //获得地址栏中pid的值，使用切割方式进行获取
+            var pid=location.search.split("=")[1];
+            console.log(pid);
+            if(pid==undefined){
+                alert("请提供商品编号，即将返回首页");
+                location.href="index.html";
+            }
+            $.ajax({
+                url:"http://localhost:5050/details",
+                type:"get",
+                data:{pid},
+                dataType:"json",
+                success:function(result){
+                    console.log(result);
+                    var {product,specs,pics}=result;
+                    console.log(product);
+                    //加载右边商品的详情信息部分
+                    $(".detail>h5:first-child").html(product.title);
+                    console.log($(".detail>div:nth-child(5)>div:last-child"));
+                    $(".detail>div:nth-child(2)>span:last-child").html(product.stock);
+                    /* 规格设置开始 */
+                    //加载规格参数列表: 
+                    var html=``;
+                    for(var sp of specs){
+                      html+=`<a class="btn btn-outline-secondary ml-lg-2 mt-lg-1 ml-sm-2 ${pid==sp.pid?"active":""}" href="product_details.html?pid=${sp.pid}">${sp.spec}</a>`
+                    }
+                    //加载到规格div中
+                    $(".detail>div:nth-child(3)>div:nth-child(2)").html(html);
+                    /* 规格设置结束 */
+                    $(".detail>div:nth-child(5)>div:last-child").html(`¥${product.price.toFixed(2)}`);
+                    //如果请求回的数据为手机
+                    if(product.cid==1){
+                        $(".intro").html(`
+                            <div class="col-lg-4 mt-3">系统：${product.os}</div>
+                            <div class="col-lg-4 mt-3">后置摄像头像素：${product.RearViewCamera}</div>
+                            <div class="col-lg-4 mt-3">电池容量：${product.batteryCapacity}</div>
+                            <div class="col-lg-4 mt-3">运行内存：${product.memory}</div>
+                            <div class="col-lg-4 mt-3">机身内存：${product.mb}</div>
+                            <div class="col-lg-4 mt-3">型号：${product.model}</div>
+                            <div class="col-lg-4 mt-3">品牌：${product.brand}</div>
+                    `);
+                    //否则就为摄像机
+                    }else if(product.cid==2){
+                        $(".intro").html(`
+                            <div class="col-lg-4 mt-3">尺寸：${product.size}</div>
+                            <div class="col-lg-4 mt-3">功能：${product.function}</div>
+                            <div class="col-lg-4 mt-3">型号：${product.model}</div>
+                            <div class="col-lg-4 mt-3">品牌：${product.brand}</div>
+                            <div class="col-lg-4 mt-3">颜色：${product.pcolor}</div>
+                    `);
+                    }
+                    $(".details_img").html(`
+                        ${product.details_img}
+                     `);
+                    //加载左边的小图片和中图片部分
+                    /* 加载下方小图片 */
+                    var $ulImgs=$(".details_sm");
+                    var HTML=``;
+                    //遍历pics中的图片
+                    for(var p of pics){
+                        var {sm,md}=p;
+                        HTML+=`
+                        <li class="float-left mx-1">
+                            <img src="../${sm}" data-md="../${md}" alt=""/>
+                        </li>
+                        `;
+                    }
+                    $ulImgs.html(HTML).css("width",78*pics.length);
+                    //跳转到详情页后，中图片默认加载第一张小图片
+                    $(".pic_md>img").attr("src","../"+pics[0].md);
+                   //鼠标进入小图片，切换成中图片
+                   console.log($(".pic_md"));
+                    $ulImgs.find("img").mouseover(function(){
+                        $(".pic_md>img").attr("src",$(this).attr("data-md"))
+                    });
+                  //添加购物车信息
+                  $('#addShopping').click(function() {
+                       //定义对象，用于插入到购物表
+                       //console.log(pics[0].sm);
+                       //console.log($('.add_num>span>input').val()*product.price);
+                       if(localStorage.getItem("uname")==null){
+                           alert("请先登录");
+                       }else{
+                       var data={
+                           sid:null,
+                           uid:localStorage.getItem('uid'),
+                           img:pics[0].sm,
+                           title:product.title,
+                           spec:product.spec,
+                           price:product.price,
+                           num:$('.add_num>span>input').val(),
+                           total:$('.add_num>span>input').val()*product.price
+                       };
+                       //往购物车商品中插入数据
+                        $.ajax({
+                          url:"http://localhost:5050/details/addShop",
+                          type:"post",
+                          data:data,
+                          dataType:'json',
+                          success:function(results) {
+                              if(results==1){
+                                  alert('添加商品成功');
+                              }else{
+                                  alert("添加购物车失败");
+                              }
+                          }
+                      })
+                    }
+                  })
+                }
+            })
+            //添加商品数量与减少商品数量button
+            var n=1;
+            $(".incrementNumber").click(function() {
+                n++;
+                $(".add_num>span>input").val(n);
+            });
+            $(".decrementNumber").click(function() {
+                n--;
+                n==0&&(n=1);
+                $(".add_num>span>input").val(n);
+            })
+        })
+    </script>
+</body>
+</html>

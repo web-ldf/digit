@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="../public/stylesheets/common.css"/>
+    <link rel="stylesheet" href="../public/stylesheets/reset.css">
+    <script src="../public/javascripts/jquery.min.js"></script>
+    <script src="../public/javascripts/popper.min.js"></script>
+    <script src="../public/javascripts/bootstrap.min.js"></script>
+    <script src="../public/javascripts/jquery.js"></script>
+    <style>
+        .index_a{
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            padding: 8px;
+        }
+        .index_a:hover{
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<!--网站头部开始-->
+<!--网站头部结束-->
+<!-- 网页的导航栏部分-->
+<!-- 网页的导航栏部分-->
+<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+    <!--1、永远显示的菜单项  a-->
+    <div class="container">
+        <a class="index_a" id="index" href="index.html">首页</a>
+        <!--2、小屏显示，大屏隐藏的按钮，折叠的激发按钮  button-->
+        <button data-toggle="collapse" data-target="#nav" class="navbar-toggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--3、小屏隐藏，纵向大屏显示横向的导航栏 ul-->
+        <div id="nav" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" id="about" href="#">关于我们</a></li>
+                <li class="nav-item"><a class="nav-link navbar-brand active"  id="phone" href="phone.html?cid=1">手机</a></li>
+                <li class="nav-item"><a class="nav-link" id="digit" href="digit.html?cid=2">数码</a></li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="请输入查询的内容" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+            </form>
+        </div>
+    </div>
+</nav>
+ <!-- 产品展示部分开始-->
+   <div class="container">
+      <div class="panel mt-2 border-bottom">
+         <h4 class="h4">手机类</h4>
+      </div>
+       <div class="row phone">
+          <!--  <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+               <div class="card">
+                   <a href="product_details.html?pid=2"><img src="../public/images/index_newProducts/HC-MDH2GKK-K.jpg" class="w-100" alt=""/></a>
+                   <div class="card-body py-2">
+                       <span>销量：</span><span>40</span>
+                       <h5 class="price d-inline-block float-right">¥6,399.00</h5>
+                   </div>
+                   <p class="text-small text-center py-2">松下HC-MDH2GK-K 肩扛式摄像机</p>
+               </div>
+           </div> -->
+       </div>
+       <!-- 分页部分开始-->
+       <div class="p-1 my-2">
+           <ul class="pagination mb-0 d-flex justify-content-center">
+               <li class="page-item disabled"><a class="page-link " href="">上一页</a></li>
+               <li class="page-item active"><a class="page-link " href="">1</a></li>
+               <li class="page-item"><a class="page-link  rounded" href="">2</a></li>
+               <li class="page-item"><a class="page-link  rounded" href="">3</a></li>
+               <li class="page-item"><a class="page-link  rounded" href="">4</a></li>
+               <li class="page-item"><a class="page-link  rounded" href="">5</a></li>
+               <li class="page-item"><a class="page-link  rounded" href="">下一页</a></li>
+           </ul>
+       </div>
+       <!-- 分页部分结束-->
+   </div>
+  <!--产品展示部分结束-->
+  <script>
+      $(function(){
+          //获得地址栏中pid的值，使用切割方式进行获取
+          var cid=location.search.split("=")[1];
+          console.log(cid);
+          $.ajax({
+              url:"http://localhost:5050/details/phone",
+              type:"get",
+              data:{cid},
+              dataType:"json",
+              success:function(results){
+                 let {phone}=results;
+                 console.log(phone);
+                 var HTML=``;
+                 for(var p of phone){
+                    HTML+=`
+                    <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                        <div class="card">
+                            <a href="${p.href}"><img src="../${p.img}" class="w-100" alt=""/></a>
+                            <div class="card-body py-2">
+                                <span>销量：</span><span>40</span>
+                                <h5 class="price d-inline-block float-right">¥${p.price.toFixed(2)}</h5>
+                            </div>
+                            <p class="text-small text-center py-2">${p.details}</p>
+                        </div>
+                   </div>
+                    `;
+                 }
+                 $(".phone").html(HTML);
+              }
+          })
+      })
+  </script>
+</body>
+</html>

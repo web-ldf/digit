@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title></title>
+    <link rel="stylesheet" href="../public/stylesheets/reset.css">
+    <link rel="stylesheet" href="../public/stylesheets/common.css"/>
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+    <script src="../public/javascripts/jquery.js"></script>
+    <style>
+        p{
+            margin: 0;
+            padding: 0;
+        }
+        .box{
+            border:1px solid #f90;
+            border-radius:10px;
+            float: left;
+            height: 720px;
+        }
+        .left_col {
+            background: #2A3F54;
+            color: #ecf0f1;
+        }
+        h3{
+            text-align:center;
+        }
+        ul{
+            list-style: none;
+        }
+        ul li{
+            float:left;
+            padding:10px 30px;
+            border-radius:4px;
+            margin-top: 5px;
+            border-bottom:none;
+            cursor:pointer;
+            width: 100%;
+        }
+        ul li{
+            color:	white;
+        }
+        iframe{
+            width:100%;
+            height:100%;
+            border:none;
+            background:none;
+        }
+        .content{
+            border: 1px solid red;
+            width: 79%;
+        }
+        .fade{ /*隐藏时的状态*/
+            height:0;
+            opacity:0;
+            overflow:hidden;
+            transition:all .5s linear;
+        }
+        .in{ /*显示时的状态*/
+            height:140px;
+            opacity:1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row no-gutters">
+            <div class="box col-sm-3 left_col">
+                <h3>后台管理系统</h3>
+                <div>
+                    <p>欢迎回来！</p>
+                    <p>超级管理员</p>
+                </div>
+                <div class="mt-3">
+                    <p class="text-small">数据管理</p>
+                </div>
+                <h4 class="title">用户管理</h4>
+                <ul id="down" class="fade">
+                    <li data-src="addUser.html">添加用户</li>
+                    <li>删除用户</li>
+                    <li>用户信息</li>
+                </ul>
+                <h4 class="title">订单管理</h4>
+                <ul id="down" class="fade">
+                    <li>添加用户</li>
+                    <li>删除用户</li>
+                    <li>用户信息</li>
+                </ul>
+            </div>
+            <div class="content col-sm-9">
+                <iframe width="100%" scrolling="no" onload="this.height=document.body.scrollHeight" src="cart.html" name="content"></iframe>
+            </div>
+        </div>
+    </div>
+<script>
+    //查找触发事件的元素
+    $('.title').click(function(){
+        var $title=$(this);
+        //查找旁边的down和其他的down
+        var $next=$title.next();
+        var $others=$title.siblings("#down");
+        //修改元素
+        //本例中:其余content都移除in class
+        $others.removeClass("in");
+        //自己旁边的content，如果显示着，就移除in class
+        if($next.hasClass("in")){
+            $next.removeClass("in")
+        }else{//否则如果自己旁边的content，是隐藏的，就添加in class
+            $next.addClass("in");
+            $title.removeClass("in");
+        }
+    });
+    console.log($("#down li"));
+    $("#down li").click(function(){
+        var address=$(this).attr("data-src");
+        $("iframe").attr("src",address);
+    });
+</script>

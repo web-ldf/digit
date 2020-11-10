@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+    <script src="../public/javascripts/jquery.min.js"></script>
+    <script src="../public/javascripts/popper.min.js"></script>
+    <script src="../public/javascripts/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="../public/stylesheets/common.css"/>
+    <script src="../public/javascripts/jquery.js"></script>
+    <style>
+        .txt_info{
+            color: red;
+        }
+        .txt_success,.txt_fail{
+            background-repeat:no-repeat;
+            background-position:left center;
+            display:block;
+       }
+        /* 验证消息：验证通过时的样式 */
+        .txt_success{
+            background-image:url("../public/images/register/ok.png");
+            padding-left:20px;
+            width:0px;height:20px;
+            overflow:hidden;
+        }
+        /* 验证消息：验证失败时的样式 */
+        .txt_fail{
+            background-image:url("../public/images/register/err.png");
+            padding-left:20px;
+            width:0px;height:20px;
+            overflow:hidden;
+        }
+    </style>
+</head>
+<body>
+<div class="border-bottom pb-4">
+    <div class="container">
+        <!-- login头部-->
+        <div class="row no-gutters">
+            <div class="col-6">
+                <h3 class="d-flex justify-content-center">用户注册</h3>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-end">
+                <span class="text-size">已有会员账号？</span>
+                <a href="login.html" class="text-size text-white btn btn-secondary mr-5">登录</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 网页注册信息内容部分-->
+<div class="container pt-sm-3">
+    <form>
+        <div class="form-group row no-gutters">
+            <label for="uname" class="col-lg-2 col-sm-12 col-form-label">用户名：</label>
+            <div class="col-lg-8 col-sm-12">
+                <input type="text" class="form-control" id="uname" placeholder="长度为6~10位">
+            </div>
+                <span class="col-lg-2 col-sm-12 d-flex align-items-center checkForm mt-2 pl-lg-3 txt_info"></span>
+        </div>
+        <div class="form-group row no-gutters no-gutters">
+            <label for="upwd" class="col-lg-2 col-sm-12 col-form-label">密码：</label>
+            <div class="col-lg-8 col-sm-12">
+                <input type="password" class="form-control" id="upwd" placeholder="请输入10-18位的密码">
+            </div>
+            <span class="col-lg-2 col-sm-12 checkForm mt-2 pl-lg-3"></span>
+        </div>
+        <div class="form-group row no-gutters">
+            <label for="check_pwd" class="col-lg-2 col-sm-12 col-form-label">确认密码：</label>
+            <div class="col-lg-8 col-sm-12">
+                <input type="password" class="form-control" id="check_pwd" placeholder="请再次确认密码">
+            </div>
+            <span class="col-lg-2 col-sm-12 checkForm mt-2 pl-lg-3"></span>
+        </div>
+        <div class="form-group row no-gutters">
+            <label for="email" class="col-lg-2 col-sm-12 col-form-label">电子邮件：</label>
+            <div class="col-lg-8 col-sm-12">
+                <input type="email" class="form-control" id="email" placeholder="请输入电子邮件">
+            </div>
+            <span class="col-lg-2 col-sm-12 checkForm mt-2 pl-lg-3"></span>
+        </div>
+        <div class="form-group row no-gutters">
+            <label for="phone" class="col-lg-2 col-sm-12 col-form-label">电话号码：</label>
+            <div class="col-lg-8 col-sm-12">
+                <input type="text" class="form-control" id="phone" placeholder="请输入11位手机号">
+            </div>
+            <span class="col-lg-2 col-sm-12 checkForm mt-2 pl-lg-3"></span>
+        </div>
+        <div class="form-group form-check text-center">
+            <input type="checkbox" class="form-check-input">
+            <label class="form-check-label">我同意"服务条款"和"法律声明"</label>
+        </div>
+    </form>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-login mr-4">提交</button>
+            <button type="reset" class="btn btn-login" value="重置">重置</button>
+        </div>
+    
+</div>
+    <script>
+        //用于验证每个注册信息都通过
+        var isUname,isUpwd,isCheckPwd,isEmail,isPhone;
+        //封装一个方法用于调用
+        function regCheck(txt,reg){
+            //txt表示文本框,reg为正则表达式
+            //用reg验证文本框的内容
+            var bool=reg.test(txt.val());
+            //由于每个input的上一级都基本相似，所以查找所有的input的上一级父元素的下一兄弟元素span
+            var span=txt.parent().next();
+            //进行验证
+            if(bool){
+                span.addClass('txt_success');
+                return true;
+            }else{
+                span.addClass('txt_fail');
+                return false;
+            }
+        }
+        //当所有的文本框获得焦点时
+        $(':input').focus(function(){
+            //找到span元素
+            var span=$(this).parent().next();
+            //获得焦点时，移除掉成功与失败样式类
+            span.removeClass('txt_success');
+            span.removeClass('txt_fail');
+            span.html("");
+        })
+        $('#uname').blur(function(){
+            //获得当前文本框
+            var txt=$(this);
+            //定义用户名正则表达式
+            var unameRegExp=/^[a-zA-Z0-9_-]{4,16}$/;
+            var uname_check=regCheck(txt,unameRegExp);
+            //console.log(regCheck(txt,unameRegExp));
+            //如果为true，表示验证通过
+            if(uname_check==true){
+                var span=$('#uname').parent().next();
+                $.ajax({
+                url:'http://localhost:5050/users/findUser',
+                type:'get',
+                data:{uname:$('#uname').val()},
+                success:function(result){
+                   if(result==1){
+                       span.addClass('txt_fail');
+                       span.html('用户名已经存在');
+                       isUname=false;
+                   }else{
+                       //如果数据库中不存在用户名，则清空span内容，添加成功
+                       span.html("");
+                       isUname=true;
+                   }
+                }
+            })
+            }
+            
+        });
+        $('#upwd').blur(function(){
+            //获得当前密码文本框
+            var txt=$(this);
+            //定义正则表达式
+            var upwdRegExp=/^\w{10,18}$/;
+            //调用函数
+            isUpwd=regCheck(txt,upwdRegExp);
+        })
+        //确认密码设置
+        $("#check_pwd").blur(function(){
+            var span=$(this).parent().next();
+            if($("#upwd").val()!=$(this).val() || $("#check_pwd").val()=="") {
+                span.addClass('txt_fail');
+                isCheckPwd=false;
+            }else{
+                span.addClass('txt_success');
+                isCheckPwd=true;
+            }
+        });
+        //电子邮箱验证
+        $('#email').blur(function(){
+            //获得当前电子邮件文本框
+            var txt=$(this);
+            //定义正则表达式
+            var emailRegExp=/^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            //调用函数
+            isEmail=regCheck(txt,emailRegExp);
+        })
+        //电话号码的设置
+        $("#phone").blur(function(){
+            //获得当前的对象
+            var phone=$(this);
+            //定义正则表达式
+            var phoneRegExp=/(\+86|0086)?\s*1[3-9]\d{9}/;
+            isPhone=regCheck(phone,phoneRegExp);
+        })
+        //单击按钮时发送ajax请求
+        $("button[type=submit]")
+        .click(function(e){
+            //阻止默认提交行为
+            e.preventDefault();
+            if(isUname && isUpwd && isPhone && isCheckPwd &&isEmail){
+            //封装为对象一次性传入后台
+            var obj={
+                uname:$('#uname').val(),
+                upwd:$("#upwd").val(),
+                sex:'1',
+                email:$('#email').val(),
+                phone:$('#phone').val()
+            }
+            //发送ajax请求
+            $.ajax({
+                url:"http://localhost:5050/users/register",
+                type:"post",
+                data:obj,
+                success:function(result){
+                    if(result==1){
+                        alert("注册成功，即将跳转登录页面");
+                        location.href="login.html"
+                    }else{
+                        alert("注册失败");
+                    }
+                }
+            });
+            }else{
+                alert('信息有误，请重新输入');
+            }
+        });
+    </script>
+</div>
+</body>
+</html>

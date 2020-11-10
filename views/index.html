@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/stylesheets/bootstrap.css">
+    <link rel="stylesheet" href="../public/stylesheets/common.css"/>
+    <link rel="stylesheet" href="../public//stylesheets/reset.css">
+    <script src="../public/javascripts/jquery.min.js"></script>
+    <script src="../public/javascripts/popper.min.js"></script>
+    <script src="../public/javascripts/bootstrap.min.js"></script>
+    <script src="../public/javascripts/jquery.js"></script>
+    <script src="../public/javascripts/header.js"></script>
+    <title>Document</title>
+    <style>
+        /*修改轮播图底部的圆点 */
+            .carousel-indicators li{
+                width: 0.7rem;
+                height: 0.7rem;
+                border-radius: 50%;
+                background-color: #fff;
+            }
+            .carousel-indicators .active {
+                background-color: #ff8800;
+            }
+            .find_shopping{
+                font-size: 1.5rem;
+            }
+            .h3{
+                font-size: 1.75rem;
+                font-weight: bold;
+            }
+            
+            /* 超大屏时 */
+            @media (min-width: 1200px) {
+                /* banner图片部分 */
+                .carousel-item>img{
+                    width: 100%;
+                    height: 31.25rem;
+                }
+            }
+            /* 大屏时 */
+            @media (min-width:992px) and (max-width:1199px){
+                 /* banner图片部分 */
+                .carousel-item>img{
+                    width: 100%;
+                    height: 26.25rem;
+                }
+            }
+            /* 中屏时 */
+            @media  (min-width:768px) and (max-width:991px){
+                 /* banner图片部分 */
+                 .carousel-item>img{
+                    width: 100%;
+                    height: 21.25rem;
+                }
+            } 
+            /* 小屏时，发现好货的媒体对象设置 */
+            @media (max-width:767px){
+                #find div{
+                    width: 50%;
+                    margin-top: 0.5rem;
+                }
+                .carousel-item>img{
+                    width: 100%;
+                    height: 15.25rem;
+                }
+            }
+            /* 超小屏时 */
+            @media (max-width:575px) {
+                /* banner图片部分 */
+                .carousel-item>img{
+                    width: 100%;
+                    height: 10.25rem;
+                }
+            }
+    </style>
+</head>
+<body>
+   <!-- 网页头部 -->
+   <header id="header"></header>
+<!-- 网页的导航栏部分-->
+<nav class="navbar navbar-dark bg-dark navbar-expand-md">
+    <!--1、永远显示的菜单项  a-->
+    <div class="container">
+        <a class="navbar-brand" id="index" href="index.html">首页</a>
+        <!--2、小屏显示，大屏隐藏的按钮，折叠的激发按钮  button-->
+        <button data-toggle="collapse" data-target="#nav" class="navbar-toggler">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!--3、小屏隐藏，纵向大屏显示横向的导航栏 ul-->
+        <div id="nav" class="collapse navbar-collapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"><a class="nav-link" id="about" href="#">关于我们</a></li>
+                <li class="nav-item"><a class="nav-link"  id="phone" href="phone.html?cid=1">手机</a></li>
+                <li class="nav-item"><a class="nav-link" id="digit" href="digit.html?cid=2">数码</a></li>
+            </ul>
+            <form class="form-inline mt-2 mt-md-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="请输入查询的内容" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<!--轮播指示图-->
+   <div id="RotationChart" class="carousel" data-ride="carousel">
+       <!--1、焦点轮播图-->
+       <div class="carousel-inner" >
+           <div class="carousel-item active">
+               <img  class="active w-100" src="../public/images/banner1.jpg" alt=""/>
+           </div>
+           <div class="carousel-item">
+               <img class="w-100" src="../public/images/banner2.jpg" alt=""/>
+           </div>
+       </div>
+       <!--2、左右箭头-->
+       <a data-slide="next" href="#RotationChart" class="carousel-control-next">
+           <span class="carousel-control-next-icon"></span>
+       </a>
+       <a data-slide="prev" href="#RotationChart" class="carousel-control-prev">
+           <span class="carousel-control-prev-icon"></span>
+       </a>
+       <!--3、轮播指示器-->
+       <ul class="carousel-indicators">
+           <li class="active" data-target="#RotationChart" data-slide-to="0"></li>
+           <li data-target="#RotationChart" data-slide-to="1"></li>
+       </ul>
+   </div>
+<!--发现好货-->
+    <div class="container">
+        <div class="font-weight-bold find_shopping border-bottom py-2">发现好货</div>
+        <div class="row justify-content-around mt-sm-2" id="find">
+                <!-- <div class="col-md-3 pt-md-2 pt-sm-3">
+                    <img src="../public/images/find_shopping1.png" class="w-100" alt=""/>
+                </div>
+                <div class="col-md-3 pt-md-2 pt-sm-3">
+                    <img src="../public/images/find_shopping2.png" class="w-100" alt=""/>
+                </div>
+                <div class="col-md-3 pt-md-2 pt-sm-3">
+                    <img src="../public/images/find_shopping3.png" class="w-100" alt=""/>
+                </div>
+            <div class="col-md-3 pt-md-2 pt-sm-3">
+                <img src="../public/images/find_shopping4.png" class="w-100" alt=""/>
+            </div> -->
+        </div>
+    </div>
+    <!--产品部分-->
+    <div class="container mt-sm-3 border-top">
+        <!--新产品面板部分-->
+        <div class="panel panel-default mt-sm-2">
+            <div class="panel-body">
+                <h3 class="h3">新产品</h3>
+            </div>
+        </div>
+        <!-- 产品区域-->
+        <div class="row" id="newProducts">
+            <!-- <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                <div class="card">
+                    <a href="product_details.html?pid=2"><img src="../public/images/oppoA33.jpg" class="w-100" alt=""/></a>
+                    <div class="card-body py-0">
+                        <span>销量：</span><span>26</span>
+                        <h5 class="d-inline-block float-right">¥999.00</h5>
+                    </div>
+                    <p class="text-small text-center">OPPO A33 2GB+16GB内存版</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                <div class="card">
+                    <a href="product_details.html?pid=2"><img src="../public/images/xiaomiMIX.jpg" class="w-100" alt=""/></a>
+                    <div class="card-body py-0">
+                        <span>销量：</span><span>24</span>
+                        <h5 class="d-inline-block float-right">¥3,999.00</h5>
+                    </div>
+                    <p class="text-small text-center">小米MIX 尊享版6GB内存 256GB</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                <div class="card">
+                    <a href="product_details.html?pid=2"><img src="../public/images/vivoY67_32GB.jpg" class="w-100" alt=""/></a>
+                    <div class="card-body py-0">
+                        <span>销量：</span><span>29</span>
+                        <h5 class="d-inline-block float-right">¥1,798.00</h5>
+                    </div>
+                    <p class="text-small text-center">vivo Y67 全网通 32GB</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                <div class="card">
+                    <a href="product_details.html?pid=2"><img src="../public/images/vivoX9Plus6GB+.jpg" class="w-100" alt=""/></a>
+                    <div class="card-body py-0">
+                        <span>销量：</span><span>40</span>
+                        <h5 class="d-inline-block float-right">￥3298.00</h5>
+                    </div>
+                    <p class="text-small text-center">vivo X9Plus 全网通 6GB+</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                <div class="card">
+                    <a href="product_details.html?pid=2"><img src="../public/images/huawei_nova.jpg" class="w-100" alt=""/></a>
+                    <div class="card-body py-0">
+                        <span>销量：</span><span>40</span>
+                        <h5 class="d-inline-block float-right">¥1,999.00</h5>
+                    </div>
+                    <p class="text-small text-center">华为 nova 青春版 4GB+64GB</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                <div class="card">
+                    <a href="product_details.html?pid=2"><img src="../public/images/EOS_700D.jpg" class="w-100" alt=""/></a>
+                    <div class="card-body py-0">
+                        <span>销量：</span><span>40</span>
+                        <h5 class="d-inline-block float-right">¥4,999.00</h5>
+                    </div>
+                    <p class="text-small text-center">佳能 EOS 700D 单反套机</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                <div class="card">
+                    <a href="product_details.html?pid=2"><img src="../public/images/EX-TR750.jpg" class="w-100" alt=""/></a>
+                    <div class="card-body py-0">
+                        <span>销量：</span><span>40</span>
+                        <h5 class="d-inline-block float-right">¥5,999.00</h5>
+                    </div>
+                    <p class="text-small text-center">卡西欧 EX-TR750 数码相机</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                <div class="card">
+                    <a href="product_details.html?pid=2"><img src="../public/images/HC-MDH2GKK-K.jpg" class="w-100" alt=""/></a>
+                    <div class="card-body py-0">
+                        <span>销量：</span><span>40</span>
+                        <h5 class="d-inline-block float-right">¥6,399.00</h5>
+                    </div>
+                    <p class="text-small text-center">松下HC-MDH2GK-K 肩扛式摄像机</p>
+                </div>
+            </div> -->
+        </div>
+ </div>
+ <script>
+     //首页动态获取商品部分
+     $(function(){
+         $.ajax({
+             url:"http://localhost:5050/index",
+             type:"get",
+             dataType:"json",
+             success:function(result){
+                 console.log(result);
+               //拿回的是对象,进行解构
+               var {newProduct,findShopping}=result;
+               console.log(newProduct,findShopping);
+               var HTML=``;
+               for(var p of newProduct){
+                 HTML+=`
+                 <div class="col-lg-3 col-md-6 mt-md-2 mt-sm-2">
+                    <div class="card">
+                        <a href="${p.href}"><img src="../${p.img}" class="w-100" alt=""/></a>
+                        <div class="card-body py-2">
+                            <span>库存：</span><span>${p.stock}</span>
+                            <h5 class="d-inline-block float-right price">¥${p.price.toFixed(2)}</h5>
+                        </div>
+                        <p class="text-small text-center py-2">${p.details}</p>
+                    </div>
+                 </div>
+                 `;
+               }
+               //添加到新产品div中
+               $("#newProducts").html(HTML);
+
+               //发现好货部分的动态加载
+               var HTML=``;
+               for(var f of findShopping){
+                 HTML+=`
+                    <div class="col-md-3 pt-md-2 pt-sm-3">
+                        <img src="../${f.imgs}" class="w-100" alt=""/>
+                    </div>
+                 `;
+               }
+               //添加到find div中
+               $("#find").html(HTML);
+             }
+         })
+     });
+     //控制nav中导航栏的样式
+     $("#digit").click(function(){
+         $("#digit").addClass("navbar-brand active");
+     })
+ </script>
+</body>
+</html>

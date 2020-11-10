@@ -1,0 +1,88 @@
+
+<!--top_login上边部分-->
+ <div class="top_login d-flex align-content-center">
+    <div class="container">
+        <div class="row no-gutters p-1 h-100">
+            <div class="col-sm-6 text-white welcome">您好，欢迎来到手机数码网--!</div>
+            <div id="Stroage" class="col-sm-6 text-white d-flex align-items-center justify-content-end">
+                <!-- <img src="../public/images/login.png" class="h-75 text-center" alt=""/>
+                <a href="login.html" class="text-white">登录</a>
+                <strong class="mr-2">|</strong>
+                <img src="../public/images/reg.png" class="h-75 text-center" alt=""/>
+                <a href="register.html" class="text-white">注册</a> -->
+            </div>
+        </div>
+    </div>
+</div>
+   
+<script>
+    $(function(){
+        //获取登录成功的用户名
+    let $uname=localStorage.getItem('uname');
+    if(!$uname){
+       $('#Stroage').html(`
+            <img src="../public/images/login.png" class="text-center mr-2" alt=""/>
+            <a href="login.html" class="text-white">登录</a>
+            <strong class="mr-2">|</strong>
+            <img src="../public/images/reg.png" class="text-center mr-2" alt=""/>
+            <a href="register.html" class="text-white">注册</a>
+       `);
+    }else{
+        $('#Stroage').html(`
+          欢迎,${$uname}&nbsp;&nbsp;
+          <strong class="mr-2">|</strong>
+          <a class='text-white' href="cart.html">购物车</a>
+          <strong class="mr-2">|</strong>
+          <a class='text-white' href="javascript:login_out()">退出</a>
+        `);
+        //登录成功后将你好...进行隐藏，显示首页跳转链接元素
+        $(".welcome").css("display","none");
+        $("#Stroage").before("<div class=\"col-md-6 col-sm-2\"><a href=\"index.html\" class='text-white'>首页</a></div>");
+    };
+    //设置单击nav的导航栏的样式
+    $("#index").click(function(){
+        $(this).addClass("navbar-brand");
+        //清除其他导航栏链接的样式
+        $("#about").removeClass("navbar-brand");
+        $("#phone").removeClass("navbar-brand active");
+        $("#digit").removeClass("navbar-brand active");
+    })
+    $("#about").click(function(){
+        $(this).addClass("navbar-brand active");
+        //清除其他导航栏链接的样式
+        $("#index").removeClass("navbar-brand");
+        $('#index').addClass('index_a');
+        $("#phone").removeClass("navbar-brand active");
+        $("#digit").removeClass("navbar-brand active");
+    });
+    $("#phone").click(function(){
+        $(this).addClass("navbar-brand active");
+        //清除其他导航栏链接的样式
+        $("#index").removeClass("navbar-brand");
+        $('#index').addClass('index_a');
+        $("#about").removeClass("navbar-brand active");
+        $("#digit").removeClass("navbar-brand active");
+        location.href="product.html?cid=1";
+        
+    });
+    $("#digit").click(function(){  
+        $(this).addClass("navbar-brand active");
+        //清除其他导航栏链接的样式
+        $("#index").removeClass("navbar-brand");
+        $('#index').addClass('index_a');
+        $("#about").removeClass("navbar-brand active");
+        $("#phone").removeClass("navbar-brand active");
+        location.href="product.html?cid=2";
+    });
+});
+    //退出用户名的函数
+    function login_out(){
+        //清除用户名的信息
+        localStorage.clear();
+        alert('退出成功，即将返回至首页');
+        //自动刷新当前页面
+        location.reload();
+        location.href='index.html';
+    }
+</script>
+<script src="../public/javascripts/jquery.js"></script>
